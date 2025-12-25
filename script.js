@@ -40,15 +40,14 @@ document.addEventListener('DOMContentLoaded', function() {
         animation.onfinish = () => particle.remove();
     }
     
-    // Клик по цене -> переход на @zona84
-    const priceItems = document.querySelectorAll('.price-item');
-    priceItems.forEach(item => {
-        item.style.cursor = 'pointer';
-        item.addEventListener('click', function() {
-            this.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                window.location.href = 'https://t.me/zona84';
-            }, 120);
+    // Клик по цене -> переход на @zona84 (только по самой цене, не по всей карточке)
+    const prices = document.querySelectorAll('.price-item .price');
+    prices.forEach(price => {
+        price.style.cursor = 'pointer';
+        price.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = 'https://t.me/zona84';
         });
     });
     
